@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Password Form</title>
+    
+</head>
+
+<body>
+    <form id="form">
+        <h1>Update Password</h1>
+        <label for="password">New password:</label>
+        <input type="password" id="password1" required />
+        <p id="pass1error"></p>
+        <br><br><br>
+        <label for="password">Confirm password:</label>
+        <input type="password" id="password2" required />
+        <br><br><br>
+        <button id="submit">Update</button>
+        <p id="pass2error"></p>
+
+    </form>
+
+    <script>
+        const form = document.getElementById("form");
+        const password1 = document.getElementById("password1");
+        const password2 = document.getElementById("password2");
+        const pass1error = document.getElementById("pass1error");
+        const pass2error = document.getElementById("pass2error");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const password1val = password1.value;
+            const password2val = password2.value;
+
+
+            const validFormData = (password1, password2) => {
+                console.log("valid method", password1, password2)
+                if (password1val !== password2val) {
+                    pass2error.textContent = "Password must be same";
+                    pass2error.style.color = "red";
+                    return;
+                }
+                else {
+                    pass2error.textContent = "Password updated successfully!";
+                    pass2error.style.color = "green";
+                }
+            });
+
+        password1.addEventListener("blur", (e) => {
+            const password1val = e.target.value;
+
+            if (password1val === "") {
+                pass1error.textContent = "*Required";
+                pass1error.style.color = "red";
+            } else {
+                pass1error.textContent = "";
+            }
+        });
+      
+    </script>
+</body>
+
+</html>
